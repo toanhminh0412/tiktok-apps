@@ -8,7 +8,7 @@ interface TodoItem {
     completed: boolean;
 }
 
-export default function Page() {
+export default function TodolistPage() {
     const newTodoItemRef = useRef<HTMLInputElement>(null);
     const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
 
@@ -21,7 +21,7 @@ export default function Page() {
                 id: lastTodoItemId + 1,
                 title: newTodoItemRef.current.value,
                 completed: false
-            };
+            }
             setTodoItems([...todoItems, newTodoItem]);
             newTodoItemRef.current.value = "";
         }
@@ -29,7 +29,7 @@ export default function Page() {
 
     // Mark a todo item as completed
     const markTodoItemAsCompleted = (id: number) => {
-        setTodoItems(todoItems.filter(item => item.id !== id))
+        setTodoItems(todoItems.filter(item => item.id !== id));
     }
 
     return (
@@ -37,7 +37,7 @@ export default function Page() {
             <h1>Todo list</h1>
             <form onSubmit={addTodoItem} className="mt-4">
                 <div className="join">
-                    <input ref={newTodoItemRef} type="text" className="input border border-black join-item" placeholder="Add a todo item"/>
+                    <input ref={newTodoItemRef} type="text" className="input border border-black join-item" placeholder="Add a todo item"></input>
                     <button className="btn btn-primary join-item">Add</button>
                 </div>
             </form>
@@ -47,8 +47,8 @@ export default function Page() {
                     <h4 className="my-0">{item.title}</h4>
                     <div className="form-control">
                         <label className="label cursor-pointer">
-                            <span className="label-text text-slate-500 text-sm">Mark as complete</span> 
-                            <input type="checkbox" className="checkbox checkbox-sm ml-4" onChange={() => {markTodoItemAsCompleted(item.id)}}/>
+                            <span className="label-text text-slate-500 text-sm">Mark as complete</span>
+                            <input type="checkbox" className="checkbox checkbox-sm ml-4" onChange={() => {markTodoItemAsCompleted(item.id)}}></input>
                         </label>
                     </div>
                 </div>
